@@ -6,13 +6,16 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: arep-app
+    restart: unless-stopped
     depends_on:
       - mongodb
     environment:
       SERVER_PORT: 5000
       MONGODB_URI: mongodb://mongodb:27017/arep_auth
     ports:
-      - "5000:5000"
+      - "443:5000"
+    volumes:
+      - /home/ec2-user/keystores:/app/keystores:ro
 
   mongodb:
     image: mongo:7.0
@@ -20,8 +23,6 @@ services:
     restart: unless-stopped
     environment:
       MONGO_INITDB_DATABASE: arep_auth
-    ports:
-      - "27018:27017"
     volumes:
       - mongo_data:/data/db
 
