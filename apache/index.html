@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auth AREP</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="auth-shell">
+      <section class="auth-card">
+        <h1>AREP Auth</h1>
+        <p class="subtitle">Login y Signup</p>
+
+        <div class="tabs" role="tablist" aria-label="Autenticacion">
+          <button
+            id="tabSignup"
+            class="tab active"
+            data-tab="signup"
+            type="button"
+          >
+            Signup
+          </button>
+          <button id="tabLogin" class="tab" data-tab="login" type="button">
+            Login
+          </button>
+        </div>
+
+        <form id="signupForm" class="panel active" autocomplete="off">
+          <label for="signupEmail">Correo</label>
+          <input id="signupEmail" name="email" type="email" required />
+
+          <label for="signupPassword">Contrasena</label>
+          <input
+            id="signupPassword"
+            name="password"
+            type="password"
+            minlength="8"
+            required
+          />
+
+          <button type="submit" class="action">Crear cuenta</button>
+        </form>
+
+        <form id="loginForm" class="panel" autocomplete="off">
+          <label for="loginEmail">Correo</label>
+          <input id="loginEmail" name="email" type="email" required />
+
+          <label for="loginPassword">Contrasena</label>
+          <input id="loginPassword" name="password" type="password" required />
+
+          <button type="submit" class="action">Iniciar sesion</button>
+        </form>
+
+        <pre id="resultBox" class="result" aria-live="polite">
+Sin acciones aun.</pre
+        >
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
