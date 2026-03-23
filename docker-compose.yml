@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: arep-app
+    depends_on:
+      - mongodb
+    environment:
+      SERVER_PORT: 5000
+      MONGODB_URI: mongodb://mongodb:27017/arep_auth
+    ports:
+      - "5000:5000"
+
+  mongodb:
+    image: mongo:7.0
+    container_name: arep-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_DATABASE: arep_auth
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:

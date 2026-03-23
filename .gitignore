@@ -4,19 +4,65 @@
 
 # Log files
 *.log
+logs/
 
 # Maven target directory
 /target/
 
+# Maven metadata
+.mvn/wrapper/maven-wrapper.jar
+
 # IntelliJ IDEA project files
 .idea/
 *.iml
+*.ipr
+*.iws
 
 # Eclipse project files
 .project
 .classpath
 .settings/
 
+# VS Code
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# NetBeans
+nbproject/private/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Spring Boot generated files
+*.pid
+*.seed
+*.pid.lock
+
+# Test and coverage artifacts
+surefire-reports/
+failsafe-reports/
+coverage/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+
+# Docker local volumes/temp files
+mongo_data/
+*.tar
+
 # OS-specific files
 .DS_Store
 Thumbs.db
+desktop.ini
+
+.metals/
