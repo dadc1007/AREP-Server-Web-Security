@@ -18,7 +18,7 @@ function activateTab(tab) {
 function showResult(payload, isError = false) {
   resultBox.classList.remove("ok", "error");
   resultBox.classList.add(isError ? "error" : "ok");
-  resultBox.textContent = JSON.stringify(payload, null, 2);
+  resultBox.textContent = payload;
 }
 
 async function sendAuthRequest(path, payload) {
@@ -36,8 +36,15 @@ async function sendAuthRequest(path, payload) {
     : await response.text();
 
   if (!response.ok) {
-    const errorPayload = typeof body === "string" ? { message: body } : body;
-    throw new Error(JSON.stringify(errorPayload, null, 2));
+    if (typeof body === "string") {
+      throw new Error(body);
+    }
+
+    if (body && typeof body.message === "string") {
+      throw new Error(body.message);
+    }
+
+    throw new Error("Ocurrio un error al procesar la solicitud");
   }
 
   return body;
@@ -56,9 +63,9 @@ signupForm.addEventListener("submit", async (event) => {
 
   try {
     const data = await sendAuthRequest("/auth/signup", payload);
-    showResult({ action: "signup", data });
+    showResult(data.message || "Usuario creado correctamente");
   } catch (error) {
-    showResult({ action: "signup", error: error.message }, true);
+    showResult(error.message, true);
   }
 });
 
@@ -72,8 +79,8 @@ loginForm.addEventListener("submit", async (event) => {
 
   try {
     const data = await sendAuthRequest("/auth/login", payload);
-    showResult({ action: "login", data });
+    showResult(data.message || "Login exitoso");
   } catch (error) {
-    showResult({ action: "login", error: error.message }, true);
+    showResult(error.message, true);
   }
 });
