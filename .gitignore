@@ -24,11 +24,7 @@ logs/
 .settings/
 
 # VS Code
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
+.vscode/
 
 # NetBeans
 nbproject/private/
@@ -55,6 +51,7 @@ coverage/
 *.key
 *.p12
 *.jks
+keystores/
 
 # Docker local volumes/temp files
 mongo_data/
